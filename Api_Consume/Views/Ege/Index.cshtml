@@ -1,0 +1,28 @@
+﻿@model List<EgeThinkSpeak>
+
+@{
+    Layout = null;
+}
+
+<h3>Ege ThinkSpeak</h3>
+
+<link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+<div class="container">
+    <table class="table table-striped">
+        <tr>
+
+            <th>Film Adı</th>
+            <th>Yapım Yılı</th>
+
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.field1</td>
+                <td>@item.field2</td>
+
+                <td><a href="#" class="btn btn-dark">Fragman</a></td>
+            </tr>
+        }
+    </table>
+</div>

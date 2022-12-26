@@ -66,5 +66,28 @@ namespace Api_Consume.Controllers
             }
             return View();
         }
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateCategory(CategoryViewModel p)
+        {
+            var client = _httpClientFactory.CreateClient();
+            var jsonData = JsonConvert.SerializeObject(p);
+            StringContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
+            var responseMessage = await client.PutAsync("https://localhost:44307/api/Category", content);
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                return RedirectToAction("Index");
+            }
+            return View();
+        }
+
+
+
+        public async Task<IActionResult> DeleteCategory(int id)
+        {
+            var client = _httpClientFactory.CreateClient();
+            await client.DeleteAsync($"https://localhost:44307/api/Category/{id}");
+            return RedirectToAction("Index");
+        }
     }
 }
